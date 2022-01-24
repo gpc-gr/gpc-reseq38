@@ -1,0 +1,14 @@
+{
+  "GPCReseq38_0011_SingleSample_00_PreAlign.reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0011_SingleSample_00_PreAlign.sample_id": "{{ sample.id }}",
+  "GPCReseq38_0011_SingleSample_00_PreAlign.sample_read_pairs": [{% for entry in sample.reads %}{
+    "id": "{{ sample.id }}.{{ entry.flowcell }}.{{ entry.lane }}.{{ entry.index }}",
+    "library": "{{ entry.library }}",
+    "platform": "{{ sample.platform }}",
+    "platform_model": "{{ sample.platform_model }}",
+    "platform_unit": "{{ entry.flowcell }}.{{ entry.lane }}.{{ entry.index }}",
+    "sequencing_center_name": "{{ sample.sequencing_center_name }}",
+    "read1": "{{ entry.read1 }}",
+    "read2": "{{ entry.read2 }}"
+  }{% if not forloop.last %},{% endif %}{% endfor %}]
+}

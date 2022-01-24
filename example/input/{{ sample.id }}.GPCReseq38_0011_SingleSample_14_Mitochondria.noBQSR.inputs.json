@@ -1,0 +1,9 @@
+{
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.baseline_reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.mitochondria_shifted_reference_fasta": "/path/to/Homo_sapiens_assembly38.mitochondria.shifted.fasta",
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.sample_id": "{{ sample.id }}",
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.sample_baseline_cram": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram",
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.sample_baseline_cram_index": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram.crai",
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.sample_baseline_bqsr_table": null,
+  "GPCReseq38_0011_SingleSample_14_Mitochondria.accelaration": {% if config.accelaration %}"{{ config.accelaration }}"{% else %}null{% endif %}
+}

@@ -1,0 +1,10 @@
+{
+  "GPCReseq38_0001_ReferencePreparation.reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0001_ReferencePreparation.reference_fasta_alt": "/path/to/Homo_sapiens_assembly38.fasta.64.alt",
+  "GPCReseq38_0001_ReferencePreparation.generate_baseline_indexes": false,
+  "GPCReseq38_0001_ReferencePreparation.chrY_contig_name": "chrY",
+  "GPCReseq38_0001_ReferencePreparation.chrY_XTR_start": 3058342,
+  "GPCReseq38_0001_ReferencePreparation.chrY_XTR_end": 6675059,
+  "GPCReseq38_0001_ReferencePreparation.mitochondria_contig_name": "chrM",
+  "GPCReseq38_0001_ReferencePreparation.mitochondria_shift_size": 10000
+}

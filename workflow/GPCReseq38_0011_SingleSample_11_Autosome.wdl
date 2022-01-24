@@ -1,0 +1,99 @@
+#
+#
+#
+
+version 1.0
+
+import "./modules/cram2gvcf_auto.wdl"
+import "./modules/md5sum.wdl"
+
+
+workflow GPCReseq38_0011_SingleSample_11_Autosome {
+
+    # --------------------------------------------------------------------------------
+    # input
+    # --------------------------------------------------------------------------------
+
+    input {
+        File reference_fasta
+        Array[File] reference_fasta_general_indexes = [
+            "${reference_fasta}.fai",
+            sub(reference_fasta, ".fa(sta)?$", ".dict")
+        ]
+
+        String sample_id
+        File sample_cram
+        File sample_cram_index = "${sample_cram}.crai"
+        File? sample_bqsr_table
+
+        String? accelaration
+
+        String sample_id_with_suffix = sample_id + (if (defined(sample_bqsr_table)) then ".BQSR" else ".noBQSR")
+        String sample_gvcf_gz__name = "${sample_id_with_suffix}.autosome.g.vcf.gz"
+
+        String bcftools_docker_image = "quay.io/biocontainers/bcftools:1.11--h7c999a4_0"
+        String gatk_docker_image = "broadinstitute/gatk:4.1.0.0"
+        String python_docker_image = "python:3.8.6-slim-buster"
+
+        String apply_bqsr_cpu_docker_image = gatk_docker_image
+        Int apply_bqsr_cpu_threads = 1
+        Float apply_bqsr_cpu_memory_gb = 4
+        String haplotype_caller_cpu_docker_image = gatk_docker_image
+        Int haplotype_caller_cpu_threads = 4
+        Float haplotype_caller_cpu_memory_gb = 4
+        String concat_gvcf_docker_image = bcftools_docker_image
+        Int concat_gvcf_threads = 4
+        Float concat_gvcf_memory_gb = 4
+    }
+
+    # --------------------------------------------------------------------------------
+    # variant call
+    # --------------------------------------------------------------------------------
+
+    call cram2gvcf_auto.cram2gvcf_auto as step0001_cram2gvcf { input:
+        reference_fasta = reference_fasta,
+        reference_fasta_general_indexes = reference_fasta_general_indexes,
+        regions = read_objects("${reference_fasta}.regions.autosome.tsv"),
+        sample_id = sample_id,
+        sample_ploidy = 2,
+        cram = sample_cram,
+        cram_index = sample_cram_index,
+        bqsr_table = sample_bqsr_table,
+        gvcf_gz__name = sample_gvcf_gz__name,
+        accelaration = accelaration,
+        apply_bqsr_cpu_docker_image = apply_bqsr_cpu_docker_image,
+        apply_bqsr_cpu_threads = apply_bqsr_cpu_threads,
+        apply_bqsr_cpu_memory_gb = apply_bqsr_cpu_memory_gb,
+        haplotype_caller_cpu_docker_image = haplotype_caller_cpu_docker_image,
+        haplotype_caller_cpu_threads = haplotype_caller_cpu_threads,
+        haplotype_caller_cpu_memory_gb = haplotype_caller_cpu_memory_gb,
+        concat_gvcf_docker_image = concat_gvcf_docker_image,
+        concat_gvcf_threads = concat_gvcf_threads,
+        concat_gvcf_memory_gb = concat_gvcf_memory_gb
+    }
+
+    # --------------------------------------------------------------------------------
+    # reporting
+    # --------------------------------------------------------------------------------
+
+    call md5sum.md5sum as step9999_md5sum { input:
+        sources = [
+            step0001_cram2gvcf.gvcf_gz,
+            step0001_cram2gvcf.gvcf_gz_index
+        ],
+        md5sum_txt__name = "${sample_id_with_suffix}.GPCReseq_0011_SingleSample_11_Autosome.md5sum.txt",
+        docker_image = python_docker_image
+    }
+
+    # --------------------------------------------------------------------------------
+    # output
+    # --------------------------------------------------------------------------------
+
+    output {
+        File gvcf_gz = step0001_cram2gvcf.gvcf_gz
+        File gvcf_gz_index = step0001_cram2gvcf.gvcf_gz_index
+
+        File md5sum_txt = step9999_md5sum.md5sum_txt
+    }
+
+}

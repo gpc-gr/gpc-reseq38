@@ -1,0 +1,8 @@
+{
+  "GPCReseq38_0011_SingleSample_11_Autosome.reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0011_SingleSample_11_Autosome.sample_id": "{{ sample.id }}",
+  "GPCReseq38_0011_SingleSample_11_Autosome.sample_cram": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram",
+  "GPCReseq38_0011_SingleSample_11_Autosome.sample_cram_index": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram.crai",
+  "GPCReseq38_0011_SingleSample_11_Autosome.sample_bqsr_table": null,
+  "GPCReseq38_0011_SingleSample_11_Autosome.accelaration": {% if config.accelaration %}"{{ config.accelaration }}"{% else %}null{% endif %}
+}

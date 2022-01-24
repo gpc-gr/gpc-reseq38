@@ -1,0 +1,8 @@
+{
+  "GPCReseq38_0011_SingleSample_12_chrXY_PAR2.reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0011_SingleSample_12_chrXY_PAR2.sample_id": "{{ sample.id }}",
+  "GPCReseq38_0011_SingleSample_12_chrXY_PAR2.sample_cram": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram",
+  "GPCReseq38_0011_SingleSample_12_chrXY_PAR2.sample_cram_index": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram.crai",
+  "GPCReseq38_0011_SingleSample_12_chrXY_PAR2.sample_bqsr_table": "{{ sample.directory }}/outputs/02_BQSR/{{ sample.id }}.BQSR.table.autosome",
+  "GPCReseq38_0011_SingleSample_12_chrXY_PAR2.accelaration": {% if config.accelaration %}"{{ config.accelaration }}"{% else %}null{% endif %}
+}

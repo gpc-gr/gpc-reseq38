@@ -1,0 +1,12 @@
+{
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.reference_fasta_fai": "/path/to/Homo_sapiens_assembly38.fasta.fai",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.reference_fasta_cache_tar_gz": "/path/to/Homo_sapiens_assembly38.fasta.samtools.cache.tar.gz",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.call_regions_bed": "/path/to/Homo_sapiens_assembly38.fasta.regions.wo_decoy.bed.gz",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.call_regions_bed_index": "/path/to/Homo_sapiens_assembly38.fasta.regions.wo_decoy.bed.gz.tbi",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.exclude_regions": "/path/to/Homo_sapiens_assembly38.fasta.regions.blacklist.ENCODE.v2.bed",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.sample_id": "{{ sample.id }}",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.sample_cram": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.sample_cram_index": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram.crai",
+  "GPCReseq38_0011_SingleSample_21_SVPreMerge.sample_cram_suffix": ".base.cram"
+}

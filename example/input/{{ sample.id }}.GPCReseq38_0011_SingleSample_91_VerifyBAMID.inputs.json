@@ -1,0 +1,8 @@
+{
+  "GPCReseq38_0011_SingleSample_91_VerifyBAMID.reference_fasta": "/path/to/Homo_sapiens_assembly38.fasta",
+  "GPCReseq38_0011_SingleSample_91_VerifyBAMID.sample_id": "{{ sample.id }}",
+  "GPCReseq38_0011_SingleSample_91_VerifyBAMID.sample_cram": "{{ sample.directory }}/outputs/01_Align/{{ sample.id }}.base.cram",
+  "GPCReseq38_0011_SingleSample_91_VerifyBAMID.verifybamid2_ud": "/path/to/1000g.100k.b38.vcf.gz.dat.UD",
+  "GPCReseq38_0011_SingleSample_91_VerifyBAMID.verifybamid2_bed": "/path/to/1000g.100k.b38.vcf.gz.dat.bed",
+  "GPCReseq38_0011_SingleSample_91_VerifyBAMID.verifybamid2_mean": "/path/to/1000g.100k.b38.vcf.gz.dat.mu"
+}
